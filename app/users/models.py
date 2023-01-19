@@ -17,7 +17,7 @@ users = [
         "password": '1234',
         "email": "teste1@email.com",
         "name": "Teste Etset",
-        "age": 99,
+        "age": 55,
         "cpf": "45678987654",
         "address": "Rua do Teste 1"   
     },
@@ -28,7 +28,7 @@ users = [
         "password": '1234',
         "email": "teste2@email.com",
         "name": "Teste Etset 2",
-        "age": 99,
+        "age": 21,
         "cpf": "43423423423",
         "address": "Rua do Teste 2"   
     },
@@ -39,8 +39,8 @@ users = [
         "password": '1234',
         "email": "teste2@email.com",
         "name": "Teste Etset 3",
-        "age": 34,
-        "cpf": "98765036855",
+        "age": "01/01/2000",
+        "cpf": 99,
         "address": "Rua do Teste 3"   
     },
     {

@@ -2,11 +2,8 @@ from flask import request
 from flask.views import MethodView
 
 from .models import users
-from .schemas import UserSchema
-
-def get_last_id():
-    last_user = users[-1]
-    return last_user['id']
+from .schema import UserSchema
+from app.helpers import get_last_id
 
 class UserController(MethodView):
 
@@ -16,6 +13,19 @@ class UserController(MethodView):
         data = request.json
         data['id'] = get_last_id() + 1
 
+        # data['birthday'] = datetime.date.isoformat(data['birthday'])
+
+        # Verificar se ja existe um usuario com aquele username e email
+        for user in users:
+            if data['username'] == user['username']:
+                return {
+                    "msg": "Esse usuśrio já existe."
+                }, 400
+            if data['email'] == user['email']:
+                return {
+                    "msg": "Esse email já está cadastrado."
+                }, 400
+        
         try:
             user = schema.dump(data)
             users.append(user)
@@ -100,5 +110,10 @@ class UserDetails(MethodView):
         return user, 201
         
     def delete(self, id):
-        pass
+        for user in users:
+            if user['id'] == id:
+                users.remove(user)
+                return {}, 204 # No Content
+       
+        return {}, 404 # Not Found
 
